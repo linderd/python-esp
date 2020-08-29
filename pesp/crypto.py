@@ -20,7 +20,7 @@ class Prf:
     def __init__(self, transform):
         self.hasher, self.key_size = self.DIGESTS[transform] if type(transform) is enums.PrfId else self.DIGESTS_1[transform]
     def prf(self, key, data):
-        return hmac.HMAC(key, data, digestmod=self.hasher).digest()
+        return hmac.HMAC(key, data, digestmod=self.hasher).digest()  # create 512 bit hmac with data and key
     def prfplus(self, key, seed, count=True):
         temp = bytes()
         for i in range(1, 1024):

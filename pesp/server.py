@@ -293,7 +293,7 @@ class IKEv2Session:
                 raise Exception('EAP not supported')
             else:
                 EAP = False
-                auth_data = self.auth_data(self.request_data, self.my_nonce, request_payload_idi, self.peer_crypto.sk_p)
+                auth_data = self.auth_data(self.request_data, self.my_nonce, request_payload_idi, self.peer_crypto.sk_p)  #TODO: here we check, if AUTH is correct!
                 assert auth_data == request_payload_auth.auth_data, 'Authentication Failed'
             chosen_child_proposal = request.get_payload(enums.Payload.SA).get_proposal(enums.EncrId.ENCR_AES_CBC)
             child_sa = self.create_child_key(chosen_child_proposal, self.peer_nonce, self.my_nonce)
